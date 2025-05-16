@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BdhXhpzpSZXIheQpIaKigTIl+mAjd8pulYwJT4Dn6xE=",
+  "Hash": "AtC3zekpDl4DKMfcgP1au2Aj+uAQnblEa0daN53XLvg=",
   "Source": "Back",
   "BasePath": "_content/Back",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Back\\wwwroot",
       "Source": "Back",
-      "ContentRoot": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\wwwroot\\",
       "BasePath": "_content/Back",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "Identity": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
       "SourceId": "Back",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\wwwroot\\",
       "BasePath": "_content/Back",
       "RelativePath": "uploads/kevin-mueller-aeNg4YA41P8-unsplash#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -41,7 +41,7 @@
   "Endpoints": [
     {
       "Route": "uploads/kevin-mueller-aeNg4YA41P8-unsplash.jpg",
-      "AssetFile": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "AssetFile": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 10:34:09 GMT"
+          "Value": "Fri, 16 May 2025 04:46:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -78,7 +78,7 @@
     },
     {
       "Route": "uploads/kevin-mueller-aeNg4YA41P8-unsplash.vbaa38aevj.jpg",
-      "AssetFile": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "AssetFile": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -99,7 +99,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 10:34:09 GMT"
+          "Value": "Fri, 16 May 2025 04:46:22 GMT"
         },
         {
           "Name": "Cache-Control",

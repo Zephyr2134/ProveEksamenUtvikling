@@ -3182,11 +3182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\Back.csproj",
+      "projectUniqueName": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\Back.csproj",
       "projectName": "Back",
-      "projectPath": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\Back.csproj",
+      "projectPath": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\Back.csproj",
       "packagesPath": "C:\\Users\\Nikolai Stanes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\obj\\",
+      "outputPath": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Documents\\GithubRepos\\ProveEksamenUtvikling\\Bakdel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nikolai Stanes\\AppData\\Roaming\\NuGet\\NuGet.Config"

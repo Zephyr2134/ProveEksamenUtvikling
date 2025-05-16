@@ -63,6 +63,21 @@ public class LaanController : ControllerBase
         }
         return Ok();
     }
+    [HttpPost("lagBruker")]
+    public async Task<ActionResult> lagBruker([FromBody] LoginForespørsel nyBruker)
+    {
+        var dekryptertStreng = Dekrypter(nyBruker.Data, "Your32ByteLongPassphraseHere");
+        Login loginInfo = JsonSerializer.Deserialize<Login>(dekryptertStreng);
+
+        if (loginInfo.brukernavn == "" || loginInfo.passord == "")
+        {
+            return BadRequest();
+        }
+        _context.LoginBrukere.Add(loginInfo);
+        await _context.SaveChangesAsync();
+
+        return Ok();
+    }
 
     [HttpPost("bilde")]
     public async Task<IActionResult> LastOppBilde([FromForm] IFormFile bilde)
@@ -203,6 +218,11 @@ public class LaanController : ControllerBase
         if (bil.tilgjengelig != oppdatertBil.tilgjengelig)
         {
             bil.tilgjengelig = oppdatertBil.tilgjengelig;
+        }
+
+        if (bil.pris != oppdatertBil.pris)
+        {
+            bil.pris = oppdatertBil.pris;
         }
 
         await _context.SaveChangesAsync();

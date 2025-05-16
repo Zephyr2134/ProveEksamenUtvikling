@@ -5,6 +5,7 @@ interface bil {
   modell: string;
   registreringsNummer: string;
   tilgjengelig: boolean;
+  pris:number;
 }
 
 interface egenskaper {
@@ -16,6 +17,7 @@ interface egenskaper {
   bilde: File | null;
   redigerBil: (id: number) => void;
   setBiler: (prev: any) => void;
+  brukernavn:string;
 }
 
 const BilerSeksjon = ({
@@ -27,18 +29,39 @@ const BilerSeksjon = ({
   bilde,
   redigerBil,
   setBiler,
+  brukernavn
 }: egenskaper) => {
   return (
     <div className="seksjon">
       <h1 style={{ textAlign: "center" }}>Biler</h1>
       <div className="boks">
+        { brukernavn === "admin" &&
         <button className="LeggTilKnapp" onClick={() => leggTilBil()}>
           Legg til bil
-        </button>
+        </button>}
         <div className="objekter" style={{ height: "700px" }}>
           {!laster ? (
             biler.map((b) => (
               <div key={b.id} className="bil">
+                {redigererBil === b.id ? (
+                    <input
+                      type="checkbox"
+                      checked={b.tilgjengelig}
+                      onChange={(e) =>
+                        setBiler((prev) =>
+                          prev.map((bil) =>
+                            bil.id === b.id
+                              ? { ...bil, tilgjengelig: e.target.checked }
+                              : bil
+                          )
+                        )
+                      }
+                    />
+                  ) : b.tilgjengelig ? (
+                    <h1>Tilgjengelig</h1>
+                  ) : (
+                    <h1>Ikke tilgjengelig</h1>
+                  )}
                 {redigererBil === b.id ? (
                   <>
                     <input
@@ -60,12 +83,13 @@ const BilerSeksjon = ({
                   <img src={b.bildePlassering} />
                 )}
                 <div className="bilInnhold">
+                  {brukernavn === "admin" &&
                   <button
                     className="redigerKnapp"
                     onClick={() => redigerBil(b.id)}
                   >
                     {redigererBil === b.id ? <h3>Ferdig</h3> : <h3>Rediger</h3>}
-                  </button>
+                  </button>}
                   <h1>Registreringsnummer: </h1>
                   {redigererBil !== b.id ? (
                     <h1>{b.registreringsNummer}</h1>
@@ -105,6 +129,25 @@ const BilerSeksjon = ({
                       )}
                     </p>
                     <p>
+                      <h1>Døgn pris: </h1>{" "}
+                      {redigererBil === b.id ? (
+                        <input
+                          value={b.pris}
+                          onChange={(e) =>
+                            setBiler((prev) =>
+                              prev.map((bil) =>
+                                bil.id === b.id
+                                  ? { ...bil, pris: e.target.value }
+                                  : bil
+                              )
+                            )
+                          }
+                        />
+                      ) : (
+                        <h1>{b.pris}</h1>
+                      )}
+                    </p>
+                    <p>
                       <h1>Modell: </h1>{" "}
                       {redigererBil === b.id ? (
                         <input
@@ -125,25 +168,6 @@ const BilerSeksjon = ({
                     </p>
                   </div>
 
-                  {redigererBil === b.id ? (
-                    <input
-                      type="checkbox"
-                      checked={b.tilgjengelig}
-                      onChange={(e) =>
-                        setBiler((prev) =>
-                          prev.map((bil) =>
-                            bil.id === b.id
-                              ? { ...bil, tilgjengelig: e.target.checked }
-                              : bil
-                          )
-                        )
-                      }
-                    />
-                  ) : b.tilgjengelig ? (
-                    <h1>Tilgjengelig</h1>
-                  ) : (
-                    <h1>Ikke tilgjengelig</h1>
-                  )}
                 </div>
               </div>
             ))

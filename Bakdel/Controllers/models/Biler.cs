@@ -8,4 +8,5 @@ public class Bil
     public required string modell { get; set; }
     public bool tilgjengelig { get; set; }
     public required string bildePlassering { get; set; }
+    public int pris { get; set; }
 };

@@ -13,6 +13,7 @@ interface bil {
   modell: string;
   registreringsNummer: string;
   tilgjengelig: boolean;
+  pris:number;
 }
 interface kunde {
   id: number;
@@ -39,6 +40,7 @@ function App() {
   const [brukernavn, setBrukernavn] = useState("");
   const [passord, setPassord] = useState("");
   const [loggetPaa, setLoggetPaa] = useState(false);
+  const [lagerBruker, setLagerBruker] = useState(false);
 
   const [biler, setBiler] = useState<bil[]>([]);
   const [redigererBil, setRedigererBil] = useState(-1);
@@ -100,6 +102,33 @@ function App() {
     setPassord("");
     setLoggetPaa(false);
   };
+
+  const lagBruker = async() =>
+  {
+    if(brukernavn !== "admin")
+      {
+    try {
+      const Data = krypterData(brukernavn, passord);
+      const loginData = { data: Data };
+      console.log("Sender: ", loginData);
+      const svar = await fetch(`${BASE_URL}/lagBruker`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: Data }),
+      });
+      if (!svar.ok) {
+        console.log("Kunne ikke lage bruker");
+      } else {
+        setLagerBruker(false);
+        console.log("Bruker laget");
+      }
+    } catch (e) {
+      console.error("Noe skjedde mens du prøvde å logge på: ", e);
+    }
+  }
+  }
 
   const sendBilde = async () => {
     if (bilde) {
@@ -383,8 +412,9 @@ function App() {
             bilde={bilde}
             redigerBil={redigerBil}
             setBiler={setBiler}
+            brukernavn={brukernavn}
           />
-
+        {brukernavn === "admin" &&
           <KundeSeksjon
             laster={laster}
             leggTilKunde={leggTilKunde}
@@ -393,12 +423,16 @@ function App() {
             redigererKunde={redigererKunde}
             setKunder={setKunder}
           />
+          }
         </>
       ) : (
         <LoginSide
           setBrukernavn={setBrukernavn}
           setPassord={setPassord}
           login={login}
+          lagBruker={lagBruker}
+          lagerBruker={lagerBruker}
+          setLagerBruker={setLagerBruker}
         />
       )}
     </>

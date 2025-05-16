@@ -14,6 +14,7 @@ interface bil {
   modell: string;
   registreringsNummer: string;
   tilgjengelig: boolean;
+  pris:number;
 }
 interface kunde {
   id: number;
