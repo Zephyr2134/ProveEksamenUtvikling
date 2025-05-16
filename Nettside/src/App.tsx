@@ -2,7 +2,7 @@ import "./style.css";
 import LoginSide from "./components/LoginSide";
 import KundeSeksjon from "./components/KundeSeksjon";
 import BilerSeksjon from "./components/BilerSeksjon";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import LaanSeksjon from "./components/LaanSeksjon";
 import * as CryptoJS from "crypto-js";
 
@@ -28,10 +28,7 @@ interface laan {
   startDato: Date;
   sluttDato: Date;
   avsluttet:boolean;
-}
-interface LoginForespørsel 
-{
-  forespørsel: string;
+  pris:number;
 }
 
 const BASE_URL = "https://localhost:7200/laan";
@@ -39,6 +36,7 @@ const BASE_URL = "https://localhost:7200/laan";
 function App() {
   const [brukernavn, setBrukernavn] = useState("");
   const [passord, setPassord] = useState("");
+  const [forerkortnummer, setForerkortnummer] = useState("");
   const [loggetPaa, setLoggetPaa] = useState(false);
   const [lagerBruker, setLagerBruker] = useState(false);
 
@@ -60,9 +58,9 @@ function App() {
   const hemmeligNøkkel = "Your32ByteLongPassphraseHere";
   const nøkkel = CryptoJS.SHA256(hemmeligNøkkel);
 
-  const krypterData = (brukernavn: string, passord: string) => {
+  const krypterData = (brukernavn: string, passord: string, forerkortnummer:string) => {
     const iv = CryptoJS.lib.WordArray.random(16);
-    const data = JSON.stringify({ brukernavn, passord });
+    const data = JSON.stringify({ brukernavn, passord, forerkortnummer });
     const encrypted = CryptoJS.AES.encrypt(data, nøkkel, {
       iv: iv,
       mode: CryptoJS.mode.CBC,
@@ -74,7 +72,7 @@ function App() {
 
   const login = async () => {
     try {
-      const Data = krypterData(brukernavn, passord);
+      const Data = krypterData(brukernavn, passord, "00000");
       const loginData = { data: Data };
       console.log("Sender: ", loginData);
       const svar = await fetch(`${BASE_URL}/login`, {
@@ -89,6 +87,9 @@ function App() {
         const melding = await svar.text();
         console.log(melding);
       } else {
+        const data = await svar.json();
+        console.log(data);
+        setForerkortnummer(data.forerkortnummer);
         setLoggetPaa(true);
         console.log("Innlogget");
       }
@@ -108,7 +109,7 @@ function App() {
     if(brukernavn !== "admin")
       {
     try {
-      const Data = krypterData(brukernavn, passord);
+      const Data = krypterData(brukernavn, passord,forerkortnummer);
       const loginData = { data: Data };
       console.log("Sender: ", loginData);
       const svar = await fetch(`${BASE_URL}/lagBruker`, {
@@ -162,12 +163,14 @@ function App() {
 
   const leggTilBil = async () => {
     if (redigererBil === -1) {
+      console.log("Legger til bil");
       const nyBil = {
         registreringsNummer: "",
-        bildePlassering: "https://localhost:7200/uploads/standar.jpg",
+        bildePlassering: "",
         merke: "",
         modell: "",
         tilgjengelig: true,
+        pris:0
       };
       try {
         const svar = await fetch(`${BASE_URL}/bil`, {
@@ -187,10 +190,13 @@ function App() {
       } catch (e: any) {
         console.error("Feil oppstod ved oppretting av bil: ", e);
       }
+    }else{
+      console.log("Kan ikke redigere 2 ting samtidig");
     }
   };
   const redigerBil = async (id: number) => {
     if (redigererBil === -1) {
+      console.log("Redigerer bil")
       setRedigererBil(id);
     } else if (redigererBil === id) {
       setRedigererBil(-1);
@@ -274,12 +280,19 @@ function App() {
   };
   const oppdaterLaan = async (id: number) => {
     try {
+      const avtale = laaneAvtaler.find((lån) => lån.id === id);
+      if(!avtale)
+        {
+          throw new Error();
+        }
+      avtale.pris = (avtale.sluttDato.getUTCDate() - avtale.startDato.getUTCDate()) * biler.find(bil=>bil.registreringsNummer===avtale.registreringsNummer)?.pris;
+      console.log(avtale);
       const svar = await fetch(`${BASE_URL}/laan/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(laaneAvtaler.find((lån) => lån.id === id)),
+        body: JSON.stringify(avtale),
       });
       if (!svar.ok) {
         throw new Error(`serveren svarte med status: ${svar.status}`);
@@ -290,7 +303,7 @@ function App() {
       setBiler((prev) =>
         prev.map((bil) =>
           bil.registreringsNummer === data.registreringsNummer
-            ? { ...bil, tilgjengelig: false }
+            ? { ...bil, tilgjengelig: false}
             : bil
         )
       );
@@ -363,6 +376,7 @@ function App() {
   useEffect(() => {
     login();
     const hentData = async () => {
+      
       setLaster(true);
       try {
         const bilSvar = await fetch(`${BASE_URL}/biler`);
@@ -370,16 +384,18 @@ function App() {
         const laanSvar = await fetch(`${BASE_URL}/laan`);
         const biler = (await bilSvar.json()) as bil[];
         const kunder = (await brukerSvar.json()) as kunde[];
-        const laan = (await laanSvar.json()) as laaneAvtale[];
+        const laan = (await laanSvar.json()) as laan[];
+        console.log(biler);
+        
         setBiler(biler);
         setKunder(kunder);
         setLaaneAvtaler(laan);
+        
       } catch (e: any) {
         setError(e);
       }
       setLaster(false);
     };
-
     hentData();
   }, [side]);
 
@@ -387,7 +403,7 @@ function App() {
     <>
       {loggetPaa ? (
         <>
-          <h1 className="tittel">Administrasjon</h1>
+          <h1 className="tittel">Logget inn som: {brukernavn}</h1>
           <button className="loggUtKnapp" onClick={() => LoggUt()}>
             Logg ut
           </button>
@@ -401,6 +417,8 @@ function App() {
             setLaaneAvtaler={setLaaneAvtaler}
             kunder={kunder}
             biler={biler}
+            forerkortnummer={forerkortnummer}
+            brukernavn={brukernavn}
           />
 
           <BilerSeksjon
@@ -413,6 +431,7 @@ function App() {
             redigerBil={redigerBil}
             setBiler={setBiler}
             brukernavn={brukernavn}
+            laan={laaneAvtaler}
           />
         {brukernavn === "admin" &&
           <KundeSeksjon
@@ -433,6 +452,7 @@ function App() {
           lagBruker={lagBruker}
           lagerBruker={lagerBruker}
           setLagerBruker={setLagerBruker}
+          setForerkortnummer={setForerkortnummer}
         />
       )}
     </>

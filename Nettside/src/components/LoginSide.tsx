@@ -5,9 +5,10 @@ interface props {
   lagerBruker:boolean;
   setLagerBruker:(verdi:boolean)=>void;
   lagBruker:()=>void;
+  setForerkortnummer:(verdi:string)=>void;
 }
 
-const LoginSide = ({ setBrukernavn, setPassord, login, lagerBruker, setLagerBruker, lagBruker }: props) => {
+const LoginSide = ({ setBrukernavn, setPassord, login, lagerBruker, setLagerBruker, lagBruker, setForerkortnummer }: props) => {
   return (
     <>
     {!lagerBruker ? 
@@ -49,8 +50,15 @@ const LoginSide = ({ setBrukernavn, setPassord, login, lagerBruker, setLagerBruk
         placeholder="Passord"
         onChange={(e) => setPassord(e.target.value)}
       />
+      <input
+        required
+        className="loginSkriveFelt"
+        type="text"
+        placeholder="Førerkortnummer"
+        onChange={(e) => setForerkortnummer(e.target.value)}
+      />
       <button type="submit" className="loginKnapp" onClick={() => lagBruker()}>
-        Logg inn
+        Lag bruker
       </button>
       <h3 onClick={()=>setLagerBruker(false)}>Har bruker?</h3>
     </form>}

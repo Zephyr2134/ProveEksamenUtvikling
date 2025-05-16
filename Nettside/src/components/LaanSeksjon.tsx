@@ -5,6 +5,7 @@ interface laan {
   startDato: Date;
   sluttDato: Date;
   avsluttet:boolean;
+  pris:number;
 }
 
 interface bil {
@@ -32,6 +33,8 @@ interface egenskaper {
   setLaaneAvtaler: (prev: any) => void;
   kunder: kunde[];
   biler: bil[];
+  forerkortnummer:string;
+  brukernavn:string;
 }
 
 const LaanSeksjon = ({
@@ -43,6 +46,8 @@ const LaanSeksjon = ({
   setLaaneAvtaler,
   kunder,
   biler,
+  forerkortnummer,
+  brukernavn
 }: egenskaper) => {
   return (
     <div className="seksjon">
@@ -54,11 +59,13 @@ const LaanSeksjon = ({
         <div className="objekter" style={{ height: "500px" }}>
           {!laster ? (
             laaneAvtaler.map((l) => (
+              (l.førerkortNummer === forerkortnummer || l.id === redigererLaan || brukernavn === "admin") && 
               <div key={l.id} className="laan">
                 {l.avsluttet && <h1>Avsluttet</h1>}
                 <button onClick={() => redigerLaan(l.id)}>
                   {redigererLaan === l.id ? <h3>Ferdig</h3> : <h3>Rediger</h3>}
                 </button>
+                {redigererLaan !== l.id && <h1>Pris: {l.pris}</h1>}
                 <h1>Registreringsnummer: </h1>{" "}
                 {redigererLaan === l.id ? (
                   <select
@@ -106,11 +113,13 @@ const LaanSeksjon = ({
                   >
                     {" "}
                     <option value="0">Velg førerkort nummer</option>{" "}
-                    {kunder.map((k) => (
+
+                    {brukernavn === "admin" ? 
+                    kunder.map((k) =>(
                       <option key={k.førerkortNummer} value={k.førerkortNummer}>
                         {k.førerkortNummer}
                       </option>
-                    ))}{" "}
+                    )) : <option>{forerkortnummer}</option>}
                   </select>
                 ) : (
                   <h1>{l.førerkortNummer}</h1>

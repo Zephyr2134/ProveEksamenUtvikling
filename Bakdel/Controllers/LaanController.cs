@@ -51,17 +51,16 @@ public class LaanController : ControllerBase
 
 
     [HttpPost("login")]
-    public async Task<ActionResult> login([FromBody] LoginForespørsel loginStreng)
+    public async Task<ActionResult<Login>> login([FromBody] LoginForespørsel loginStreng)
     {
         var dekryptertStreng = Dekrypter(loginStreng.Data, "Your32ByteLongPassphraseHere");
         Login loginInfo = JsonSerializer.Deserialize<Login>(dekryptertStreng);
-        Console.WriteLine(loginInfo.brukernavn, loginInfo.passord);
         var bruker = await _context.LoginBrukere.FirstOrDefaultAsync(u => u.brukernavn == loginInfo.brukernavn && u.passord == loginInfo.passord);
         if (bruker == null)
         {
             return BadRequest();
         }
-        return Ok();
+        return Ok(bruker);
     }
     [HttpPost("lagBruker")]
     public async Task<ActionResult> lagBruker([FromBody] LoginForespørsel nyBruker)
@@ -73,10 +72,14 @@ public class LaanController : ControllerBase
         {
             return BadRequest();
         }
-        _context.LoginBrukere.Add(loginInfo);
-        await _context.SaveChangesAsync();
-
-        return Ok();
+        var bruker = await _context.LoginBrukere.FirstOrDefaultAsync(u => u.brukernavn == loginInfo.brukernavn || u.passord == loginInfo.passord || u.forerkortnummer == loginInfo.forerkortnummer);
+        if (bruker == null)
+        {
+            _context.LoginBrukere.Add(loginInfo);
+            await _context.SaveChangesAsync();
+            return Ok(); 
+        }
+        return BadRequest();
     }
 
     [HttpPost("bilde")]
@@ -297,6 +300,10 @@ public class LaanController : ControllerBase
         if(avtale.avsluttet != oppdatertAvtale.avsluttet)
         {
             avtale.avsluttet = oppdatertAvtale.avsluttet;
+        }
+        if (avtale.pris != oppdatertAvtale.pris)
+        {
+            avtale.pris = oppdatertAvtale.pris;
         }
 
         await _context.SaveChangesAsync();
