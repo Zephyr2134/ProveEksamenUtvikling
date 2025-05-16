@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "PackagePath": "staticwebassets\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Back.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Back.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.Back.props",
+      "PackagePath": "build\\Back.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.Back.props",
+      "PackagePath": "buildMultiTargeting\\Back.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.Back.props",
+      "PackagePath": "buildTransitive\\Back.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

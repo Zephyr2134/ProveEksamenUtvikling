@@ -1,0 +1,11 @@
+INSERT INTO Biler(registreringsNummer, merke, modell, tilgjengelig, bildePlassering) VALUES('4324323','Volkswagen','Transporter',1,'None');
+SELECT * FROM Biler;
+DELETE FROM Låneavtaler;
+DELETE FROM Biler;
+DELETE FROM Brukere;
+CREATE TABLE LoginBrukere(id INTEGER PRIMARY KEY, brukernavn TEXT, passord TEXT);
+SELECT * FROM LoginBrukere;
+UPDATE LoginBrukere SET passord='passord';
+ALTER TABLE Låneavtaler ADD COLUMN avsluttet BIT;
+UPDATE Låneavtaler SET avsluttet=0;
+SELECT * FROM Låneavtaler;

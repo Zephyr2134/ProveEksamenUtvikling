@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "Hash": "BdhXhpzpSZXIheQpIaKigTIl+mAjd8pulYwJT4Dn6xE=",
+  "Source": "Back",
+  "BasePath": "_content/Back",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Back\\wwwroot",
+      "Source": "Back",
+      "ContentRoot": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\",
+      "BasePath": "_content/Back",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "SourceId": "Back",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\",
+      "BasePath": "_content/Back",
+      "RelativePath": "uploads/kevin-mueller-aeNg4YA41P8-unsplash#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vbaa38aevj",
+      "Integrity": "y3UyPb2AnRE8Em7Mm2qMrmrIRfA6Bl5UwJOKWkvdqfY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "AssetFile": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "587369"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y3UyPb2AnRE8Em7Mm2qMrmrIRfA6Bl5UwJOKWkvdqfY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 10:34:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-y3UyPb2AnRE8Em7Mm2qMrmrIRfA6Bl5UwJOKWkvdqfY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/kevin-mueller-aeNg4YA41P8-unsplash.vbaa38aevj.jpg",
+      "AssetFile": "C:\\Users\\Nikolai Stanes\\OneDrive - Innlandet fylkeskommune\\Desktop\\UtviklingEksamen\\Back\\wwwroot\\uploads\\kevin-mueller-aeNg4YA41P8-unsplash.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "587369"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y3UyPb2AnRE8Em7Mm2qMrmrIRfA6Bl5UwJOKWkvdqfY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 10:34:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vbaa38aevj"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/kevin-mueller-aeNg4YA41P8-unsplash.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-y3UyPb2AnRE8Em7Mm2qMrmrIRfA6Bl5UwJOKWkvdqfY="
+        }
+      ]
+    }
+  ]
+}
