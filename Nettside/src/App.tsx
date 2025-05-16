@@ -285,7 +285,7 @@ function App() {
         {
           throw new Error();
         }
-      avtale.pris = (avtale.sluttDato.getUTCDate() - avtale.startDato.getUTCDate()) * biler.find(bil=>bil.registreringsNummer===avtale.registreringsNummer)?.pris;
+      avtale.pris = (avtale.sluttDato.getUTCDate() - avtale.startDato.getUTCDate()) * biler.find(bil=>bil.registreringsNummer===avtale.registreringsNummer)!.pris;
       console.log(avtale);
       const svar = await fetch(`${BASE_URL}/laan/${id}`, {
         method: "PUT",
@@ -407,6 +407,7 @@ function App() {
           <button className="loggUtKnapp" onClick={() => LoggUt()}>
             Logg ut
           </button>
+          
 
           <LaanSeksjon
             leggTilLaan={leggTilLaan}
@@ -446,6 +447,7 @@ function App() {
           }
         </>
       ) : (
+        <>
         <LoginSide
           setBrukernavn={setBrukernavn}
           setPassord={setPassord}
@@ -455,6 +457,10 @@ function App() {
           setLagerBruker={setLagerBruker}
           setForerkortnummer={setForerkortnummer}
         />
+
+        <h1 hidden>{error}</h1>
+        <h1 onClick={()=>setSide(1)}>Noe</h1>
+        </>
       )}
     </>
   );

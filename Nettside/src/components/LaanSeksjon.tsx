@@ -71,8 +71,8 @@ const LaanSeksjon = ({
                   <select
                     value={l.registreringsNummer}
                     onChange={(e) =>
-                      setLaaneAvtaler((prev) =>
-                        prev.map((laan) =>
+                      setLaaneAvtaler((prev:any) =>
+                        prev.map((laan:any) =>
                           laan.id === l.id
                             ? { ...laan, registreringsNummer: e.target.value }
                             : laan
@@ -102,8 +102,8 @@ const LaanSeksjon = ({
                   <select
                     value={l.førerkortNummer}
                     onChange={(e) =>
-                      setLaaneAvtaler((prev) =>
-                        prev.map((laan) =>
+                      setLaaneAvtaler((prev:any) =>
+                        prev.map((laan:any) =>
                           laan.id === l.id
                             ? { ...laan, førerkortNummer: e.target.value }
                             : laan
@@ -131,8 +131,8 @@ const LaanSeksjon = ({
                       <input
                         type="datetime-local"
                         onChange={(e) =>
-                          setLaaneAvtaler((prev) =>
-                            prev.map((laan) =>
+                          setLaaneAvtaler((prev:any) =>
+                            prev.map((laan:any) =>
                               laan.id === l.id
                                 ? {
                                     ...laan,
@@ -153,8 +153,8 @@ const LaanSeksjon = ({
                       <input
                         type="datetime-local"
                         onChange={(e) =>
-                          setLaaneAvtaler((prev) =>
-                            prev.map((laan) =>
+                          setLaaneAvtaler((prev:any) =>
+                            prev.map((laan:any) =>
                               laan.id === l.id
                                 ? {
                                     ...laan,
@@ -171,8 +171,8 @@ const LaanSeksjon = ({
                      
                   </div>
                 </div>
-                {redigererLaan === l.id && <button onClick={()=>setLaaneAvtaler((prev) =>
-                            prev.map((laan) =>
+                {redigererLaan === l.id && <button onClick={()=>setLaaneAvtaler((prev:any) =>
+                            prev.map((laan:any) =>
                               laan.id === l.id
                                 ? {...laan,avsluttet:true,} : laan))}>Avslutt lån</button>}
               </div>

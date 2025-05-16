@@ -63,8 +63,8 @@ const BilerSeksjon = ({
                         type="checkbox"
                         checked={b.tilgjengelig}
                         onChange={(e) =>
-                          setBiler((prev) =>
-                            prev.map((bil) =>
+                          setBiler((prev:any) =>
+                            prev.map((bil:any) =>
                               bil.id === b.id
                                 ? { ...bil, tilgjengelig: e.target.checked }
                                 : bil
@@ -118,8 +118,8 @@ const BilerSeksjon = ({
                           className="regNummerFelt"
                           value={b.registreringsNummer}
                           onChange={(e) =>
-                            setBiler((prev) =>
-                              prev.map((bil) =>
+                            setBiler((prev:any) =>
+                              prev.map((bil:any) =>
                                 bil.id === b.id
                                   ? {
                                       ...bil,
@@ -138,8 +138,8 @@ const BilerSeksjon = ({
                             <input
                               value={b.merke}
                               onChange={(e) =>
-                                setBiler((prev) =>
-                                  prev.map((bil) =>
+                                setBiler((prev:any) =>
+                                  prev.map((bil:any) =>
                                     bil.id === b.id
                                       ? { ...bil, merke: e.target.value }
                                       : bil
@@ -157,8 +157,8 @@ const BilerSeksjon = ({
                             <input
                               value={b.pris}
                               onChange={(e) =>
-                                setBiler((prev) =>
-                                  prev.map((bil) =>
+                                setBiler((prev:any) =>
+                                  prev.map((bil:any) =>
                                     bil.id === b.id
                                       ? { ...bil, pris: e.target.value }
                                       : bil
@@ -176,8 +176,8 @@ const BilerSeksjon = ({
                             <input
                               value={b.modell}
                               onChange={(e) =>
-                                setBiler((prev) =>
-                                  prev.map((bil) =>
+                                setBiler((prev:any) =>
+                                  prev.map((bil:any) =>
                                     bil.id === b.id
                                       ? { ...bil, modell: e.target.value }
                                       : bil

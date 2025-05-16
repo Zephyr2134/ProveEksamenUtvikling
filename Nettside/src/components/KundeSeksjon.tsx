@@ -54,8 +54,8 @@ const KundeSeksjon = ({
                     <input
                       value={k.brukernavn}
                       onChange={(e) =>
-                        setKunder((prev) =>
-                          prev.map((kunde) =>
+                        setKunder((prev:any) =>
+                          prev.map((kunde:any) =>
                             kunde.id === k.id
                               ? { ...kunde, fornavn: e.target.value }
                               : kunde
@@ -66,8 +66,8 @@ const KundeSeksjon = ({
                     <input
                       value={k.passord}
                       onChange={(e) =>
-                        setKunder((prev) =>
-                          prev.map((kunde) =>
+                        setKunder((prev:any) =>
+                          prev.map((kunde:any) =>
                             kunde.id === k.id
                               ? { ...kunde, etternavn: e.target.value }
                               : kunde
@@ -84,8 +84,8 @@ const KundeSeksjon = ({
                   <input
                     value={k.forerkortnummer}
                     onChange={(e) =>
-                      setKunder((prev) =>
-                        prev.map((kunde) =>
+                      setKunder((prev:any) =>
+                        prev.map((kunde:any) =>
                           kunde.id === k.id
                             ? { ...kunde, forerkortnummer: e.target.value }
                             : kunde
