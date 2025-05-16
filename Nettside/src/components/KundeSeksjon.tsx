@@ -1,8 +1,18 @@
 interface kunde {
   id: number;
-  fornavn: string;
-  etternavn: string;
+  brukernavn: string;
+  passord: string;
+  forerkortnummer: string;
+}
+
+interface laan {
+  id: number;
+  registreringsNummer: string;
   førerkortNummer: string;
+  startDato: Date;
+  sluttDato: Date;
+  avsluttet:boolean;
+  pris:number;
 }
 
 interface egenskaper {
@@ -12,23 +22,21 @@ interface egenskaper {
   redigerKunde: (id: number) => void;
   redigererKunde: number;
   setKunder: (prev: any) => void;
+  laan:laan[];
 }
 
 const KundeSeksjon = ({
   laster,
-  leggTilKunde,
   kunder,
   redigerKunde,
   redigererKunde,
   setKunder,
+  laan,
 }: egenskaper) => {
   return (
     <div className="seksjon">
       <h1 style={{ textAlign: "center" }}>Brukere</h1>
       <div className="boks">
-        <button className="LeggTilKnapp" onClick={() => leggTilKunde()}>
-          Legg til kunde
-        </button>
         <div className="objekter">
           {!laster ? (
             kunder.map((k) => (
@@ -39,12 +47,12 @@ const KundeSeksjon = ({
                 <h1>Navn: </h1>
                 {redigererKunde !== k.id ? (
                   <h1>
-                    {k.fornavn} {k.etternavn}
+                    {k.brukernavn} {k.passord}
                   </h1>
                 ) : (
                   <>
                     <input
-                      value={k.fornavn}
+                      value={k.brukernavn}
                       onChange={(e) =>
                         setKunder((prev) =>
                           prev.map((kunde) =>
@@ -56,7 +64,7 @@ const KundeSeksjon = ({
                       }
                     />
                     <input
-                      value={k.etternavn}
+                      value={k.passord}
                       onChange={(e) =>
                         setKunder((prev) =>
                           prev.map((kunde) =>
@@ -71,21 +79,22 @@ const KundeSeksjon = ({
                 )}
                 <h1>Førerkortnummer: </h1>
                 {redigererKunde !== k.id ? (
-                  <h1>{k.førerkortNummer}</h1>
+                  <h1>{k.forerkortnummer}</h1>
                 ) : (
                   <input
-                    value={k.førerkortNummer}
+                    value={k.forerkortnummer}
                     onChange={(e) =>
                       setKunder((prev) =>
                         prev.map((kunde) =>
                           kunde.id === k.id
-                            ? { ...kunde, førerkortNummer: e.target.value }
+                            ? { ...kunde, forerkortnummer: e.target.value }
                             : kunde
                         )
                       )
                     }
                   />
                 )}
+                <h3>Historikk: {laan.map(l=>l.førerkortNummer === k.forerkortnummer && <h3>{l.registreringsNummer}{ l.avsluttet ? "-avsluttet": "-aktiv"}</h3>)}</h3>
               </div>
             ))
           ) : (

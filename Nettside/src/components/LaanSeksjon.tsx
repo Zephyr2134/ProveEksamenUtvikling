@@ -19,9 +19,9 @@ interface bil {
 }
 interface kunde {
   id: number;
-  fornavn: string;
-  etternavn: string;
-  førerkortNummer: string;
+  brukernavn: string;
+  passord: string;
+  forerkortnummer: string;
 }
 
 interface egenskaper {
@@ -116,8 +116,8 @@ const LaanSeksjon = ({
 
                     {brukernavn === "admin" ? 
                     kunder.map((k) =>(
-                      <option key={k.førerkortNummer} value={k.førerkortNummer}>
-                        {k.førerkortNummer}
+                      <option key={k.forerkortnummer} value={k.forerkortnummer}>
+                        {k.forerkortnummer}
                       </option>
                     )) : <option>{forerkortnummer}</option>}
                   </select>

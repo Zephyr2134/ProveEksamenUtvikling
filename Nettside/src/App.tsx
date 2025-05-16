@@ -17,9 +17,9 @@ interface bil {
 }
 interface kunde {
   id: number;
-  fornavn: string;
-  etternavn: string;
-  førerkortNummer: string;
+  brukernavn: string;
+  passord: string;
+  forerkortnummer: string;
 }
 interface laan {
   id: number;
@@ -441,6 +441,7 @@ function App() {
             redigerKunde={redigerKunde}
             redigererKunde={redigererKunde}
             setKunder={setKunder}
+            laan={laaneAvtaler}
           />
           }
         </>

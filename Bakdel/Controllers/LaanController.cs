@@ -105,15 +105,15 @@ public class LaanController : ControllerBase
     }
 
     [HttpGet("brukere")]
-    public async Task<ActionResult<IEnumerable<Bruker>>> HentBrukere()
+    public async Task<ActionResult<IEnumerable<Login>>> HentBrukere()
     {
-        var brukere = await _context.Brukere.ToListAsync();
+        var brukere = await _context.LoginBrukere.ToListAsync();
         return Ok(brukere);
     }
     [HttpGet("bruker/{id}")]
-    public async Task<ActionResult<Bruker>> HentBruker(int id)
+    public async Task<ActionResult<Login>> HentBruker(int id)
     {
-        var bruker = await _context.Brukere.FindAsync(id);
+        var bruker = await _context.LoginBrukere.FindAsync(id);
         if (bruker == null)
         {
             return NotFound();
@@ -121,38 +121,38 @@ public class LaanController : ControllerBase
         return Ok(bruker);
     }
     [HttpPost("bruker")]
-    public async Task<ActionResult<Bruker>> LagBruker([FromBody] Bruker bruker)
+    public async Task<ActionResult<Bruker>> LagBruker([FromBody] Login bruker)
     {
-        _context.Brukere.Add(bruker);
+        _context.LoginBrukere.Add(bruker);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(HentBruker), new { id = bruker.id }, bruker);
     }
     [HttpPut("bruker/{id}")]
-    public async Task<ActionResult<Bruker>> OppdaterBruker(int id, [FromBody] Bruker oppdatertBruker)
+    public async Task<ActionResult<Bruker>> OppdaterBruker(int id, [FromBody] Login oppdatertBruker)
     {
         if (id != oppdatertBruker.id)
         {
             return BadRequest("ID-ene stemmer ikke");
         }
 
-        var bruker = await _context.Brukere.FindAsync(id);
+        var bruker = await _context.LoginBrukere.FindAsync(id);
         if (bruker == null)
         {
             return NotFound("Låneavtale ble ikke funnet");
         }
-        if (bruker.førerkortNummer != oppdatertBruker.førerkortNummer)
+        if (bruker.forerkortnummer != oppdatertBruker.forerkortnummer)
         {
-            bruker.førerkortNummer = oppdatertBruker.førerkortNummer;
+            bruker.forerkortnummer = oppdatertBruker.forerkortnummer;
         }
 
-        if (bruker.fornavn != oppdatertBruker.fornavn)
+        if (bruker.brukernavn != oppdatertBruker.brukernavn)
         {
-            bruker.fornavn = oppdatertBruker.fornavn;
+            bruker.brukernavn = oppdatertBruker.brukernavn;
         }
 
-        if (bruker.etternavn != oppdatertBruker.etternavn)
+        if (bruker.passord != oppdatertBruker.passord)
         {
-            bruker.etternavn = oppdatertBruker.etternavn;
+            bruker.passord = oppdatertBruker.passord;
         }
 
 

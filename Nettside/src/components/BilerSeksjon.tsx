@@ -189,7 +189,7 @@ const BilerSeksjon = ({
                             <h1>{b.modell}</h1>
                           )}
                         </p>
-                        {brukernavn === "admin" && <h3>Historikk: {laan.map(l=>l.registreringsNummer === b.registreringsNummer && <h3>{l.førerkortNummer}</h3>)}</h3>}
+                        {brukernavn === "admin" && <h3>Historikk: {laan.map(l=>l.registreringsNummer === b.registreringsNummer && <h3>{l.førerkortNummer}{ l.avsluttet ? "-Har ikke": "-Har"}</h3>)}</h3>}
                       </div>
                     </div>
                   </div>
